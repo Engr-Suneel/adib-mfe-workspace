@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@adib-mfe-workspace/ui-i18n": ["libs/ui-i18n/src/index.ts"],
+      "@adib-mfe-workspace/ui-theme": ["libs/ui-theme/src/index.ts"],
+      "todoList/Routes": ["apps/todoList/src/app/remote-entry/entry.routes.ts"],
+      "userProfile/Routes": [
+        "apps/userProfile/src/app/remote-entry/entry.routes.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

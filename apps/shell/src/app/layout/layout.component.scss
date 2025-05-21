@@ -1,0 +1,112 @@
+.sidenav-container {
+  height: 100vh;
+  background-color: var(--background-color, #f5f5f5);
+}
+
+.sidenav {
+  width: 220px;
+  background-color: var(--mat-sys-surface, #fafafa);
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0px !important;
+}
+
+[dir='rtl'] .sidenav {
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: none;
+}
+
+.sidenav-header {
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-color: inherit;
+}
+
+.mat-toolbar.mat-primary.main-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-title {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mat-sidenav-content {
+  scroll-padding-top: 64px;
+  background-color: var(--content-bg, #fff);
+  min-height: 100%;
+}
+
+.content-wrapper {
+  padding: 1rem;
+  border-radius: 0px;
+  background-color: var(--mat-sys-inverse-on-surface, #fff);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: calc(100% - 96px);
+}
+
+.mat-nav-list a {
+  border-radius: 6px;
+  margin: 0.25rem 0;
+  transition: background-color 0.3s;
+}
+
+.mat-nav-list a:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.active-link {
+  font-weight: bold;
+  color: var(--primary-color, #1976d2);
+  background-color: rgba(25, 118, 210, 0.1);
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+::ng-deep {
+  .lang-switch {
+    min-width: 90px; /* smaller width */
+    font-size: 0.875rem;
+    width: 120px;
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none !important;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      height: 36px !important;
+      .mat-mdc-form-field-infix {
+        padding: 6px 0px !important;
+      }
+    }
+  }
+
+  .lang-switch .mat-select-trigger {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 0.875rem;
+  }
+
+  .lang-switch.mat-form-field {
+    margin-left: 1rem;
+  }
+}

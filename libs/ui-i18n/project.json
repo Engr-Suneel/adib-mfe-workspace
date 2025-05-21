@@ -1,0 +1,29 @@
+{
+  "name": "ui-i18n",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui-i18n/src",
+  "prefix": "app",
+  "projectType": "library",
+  "tags": ["ui"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/ui-i18n/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ui-i18n/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ui-i18n/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

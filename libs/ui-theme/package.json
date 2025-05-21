@@ -1,0 +1,13 @@
+{
+  "name": "@adib-mfe-workspace/ui-theme",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@angular/cdk": "^19.2.16",
+    "@angular/material": "^19.2.16"
+  }
+}
