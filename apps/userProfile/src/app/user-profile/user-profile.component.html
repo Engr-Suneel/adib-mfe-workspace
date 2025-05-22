@@ -17,24 +17,28 @@
 
       <mat-card-content>
         <p>
-          <mat-icon class="icon">badge</mat-icon> <strong>Username:</strong>
+          <mat-icon class="icon">badge</mat-icon>
+          <strong>{{ 'USERNAME' | translate }}:</strong>
           {{ user()?.username }}
         </p>
         <p>
-          <mat-icon class="icon">call</mat-icon> <strong>Phone:</strong>
+          <mat-icon class="icon">call</mat-icon>
+          <strong>{{ 'PHONE' | translate }}:</strong>
           {{ user()?.phone }}
         </p>
         <p>
-          <mat-icon class="icon">language</mat-icon> <strong>Website:</strong>
+          <mat-icon class="icon">language</mat-icon>
+          <strong>{{ 'WEBSITE' | translate }}:</strong>
           {{ user()?.website }}
         </p>
         <p>
-          <mat-icon class="icon">business</mat-icon> <strong>Company:</strong>
+          <mat-icon class="icon">business</mat-icon>
+          <strong>{{ 'COMPANY' | translate }}:</strong>
           {{ user()?.company?.name }}
         </p>
         <p>
           <mat-icon class="icon">location_on</mat-icon>
-          <strong>Address:</strong>
+          <strong>{{ 'ADDRESS' | translate }}:</strong>
           {{ user()?.address?.street }}, {{ user()?.address?.city }}
         </p>
       </mat-card-content>

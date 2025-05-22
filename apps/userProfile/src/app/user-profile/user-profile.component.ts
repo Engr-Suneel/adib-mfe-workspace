@@ -4,6 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { UserProfileStore } from './user-profile.store';
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-user-profile',
   imports: [
@@ -11,6 +13,7 @@ import { UserProfileStore } from './user-profile.store';
     MatCardModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    TranslateModule,
   ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss',

@@ -1,7 +1,17 @@
 {
   "MENU": "Menu",
-  "TITLE": "Welcome",
   "USER_PROFILE": "User Profile",
   "TODOS": "Todo List",
-  "ADIB_MFE_WORKSPACE": "ADIB MFE Workspace"
+  "ADIB_MFE_WORKSPACE": "ADIB MFE Workspace",
+  "USERNAME": "Username",
+  "PHONE": "Phone",
+  "WEBSITE": "Website",
+  "COMPANY": "Company",
+  "ADDRESS": "Address",
+  "ID": "ID",
+  "TITLE": "Title",
+  "BODY": "Body",
+  "NO_POST_FOUND": "No post found",
+  "SEARCH_POST": "Search Post",
+  "TYPE_TO_SEARCH": "Type to search"
 }

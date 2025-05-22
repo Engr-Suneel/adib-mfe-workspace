@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 import { PostStore } from './post.store';
 import { Post } from './post.model';
 
@@ -28,6 +29,7 @@ import { Post } from './post.model';
     MatCardModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    TranslateModule,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',

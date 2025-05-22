@@ -8,11 +8,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+export function createTranslateLoader(prefix: string) {
+  return (http: HttpClient) => new TranslateHttpLoader(http, prefix, '.json');
 }
 
-export function provideTranslate(): EnvironmentProviders {
+// Used only once in the root (Shell)
+export function provideRootTranslate(
+  prefix = '/assets/i18n/'
+): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideHttpClient(),
     importProvidersFrom(
@@ -20,7 +23,24 @@ export function provideTranslate(): EnvironmentProviders {
         defaultLanguage: 'en',
         loader: {
           provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
+          useFactory: createTranslateLoader(prefix),
+          deps: [HttpClient],
+        },
+      })
+    ),
+  ]);
+}
+
+// Used in each MFE (child modules)
+export function provideChildTranslate(prefix: string): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    provideHttpClient(),
+    importProvidersFrom(
+      TranslateModule.forChild({
+        defaultLanguage: 'en',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader(prefix),
           deps: [HttpClient],
         },
       })
