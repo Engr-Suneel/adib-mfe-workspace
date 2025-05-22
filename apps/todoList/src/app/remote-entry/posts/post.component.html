@@ -1,0 +1,65 @@
+<div class="post-table-container">
+  <!-- Search Field -->
+  <div class="search-wrapper">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search posts</mat-label>
+      <input
+        matInput
+        placeholder="Type to search"
+        (keyup)="onSearchChange($any($event.target).value)"
+      />
+    </mat-form-field>
+  </div>
+
+  <!-- Spinner Overlay -->
+  <div class="spinner-overlay" *ngIf="postStore.isLoading()">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+
+  <!-- Data Table -->
+  <div class="table-wrapper mat-elevation-z8" *ngIf="!postStore.isLoading()">
+    <table
+      mat-table
+      [dataSource]="posts()"
+      matSort
+      (matSortChange)="onSortChange($event)"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let post">{{ post.id }}</td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let post">{{ post.title }}</td>
+      </ng-container>
+
+      <!-- Body Column -->
+      <ng-container matColumnDef="body">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Body</th>
+        <td mat-cell *matCellDef="let post">{{ post.body }}</td>
+      </ng-container>
+
+      <!-- Row Definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!-- No Results -->
+    <div class="no-results" *ngIf="posts()?.length === 0">
+      <p>No posts found.</p>
+    </div>
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [length]="postStore.pagination().totalCount"
+    [pageSize]="postStore.filters().limit"
+    [pageIndex]="postStore.filters().page - 1"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    (page)="onPageChange($event)"
+  ></mat-paginator>
+</div>

@@ -20,6 +20,5 @@ export interface IUserProfile {
 
 export interface IUserProfileState {
   user: IUserProfile | null;
-  loading: boolean;
   error: string | null;
 }

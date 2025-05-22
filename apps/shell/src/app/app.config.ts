@@ -6,9 +6,11 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { provideTranslate } from '@adib-mfe-workspace/ui-i18n';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideTranslate(),
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),

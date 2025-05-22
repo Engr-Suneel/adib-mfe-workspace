@@ -1,1 +1,47 @@
-<p>user-profile works!</p>
+<ng-container *ngIf="loading(); else loaded">
+  <div class="spinner-container">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-template #loaded>
+  <ng-container *ngIf="user(); else errorTpl">
+    <mat-card class="user-card">
+      <mat-card-header>
+        <div mat-card-avatar class="user-avatar">
+          <mat-icon>person</mat-icon>
+        </div>
+        <mat-card-title>{{ user()?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ user()?.email }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          <mat-icon class="icon">badge</mat-icon> <strong>Username:</strong>
+          {{ user()?.username }}
+        </p>
+        <p>
+          <mat-icon class="icon">call</mat-icon> <strong>Phone:</strong>
+          {{ user()?.phone }}
+        </p>
+        <p>
+          <mat-icon class="icon">language</mat-icon> <strong>Website:</strong>
+          {{ user()?.website }}
+        </p>
+        <p>
+          <mat-icon class="icon">business</mat-icon> <strong>Company:</strong>
+          {{ user()?.company?.name }}
+        </p>
+        <p>
+          <mat-icon class="icon">location_on</mat-icon>
+          <strong>Address:</strong>
+          {{ user()?.address?.street }}, {{ user()?.address?.city }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</ng-template>
+
+<ng-template #errorTpl>
+  <p class="error-text">{{ error() }}</p>
+</ng-template>

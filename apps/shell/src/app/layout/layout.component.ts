@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-layout',
@@ -31,6 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
     TranslateModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatInputModule,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { PostComponent } from './posts/post.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-  imports: [CommonModule, NxWelcomeComponent],
-  selector: 'app-todoList-entry',
-  template: `<app-nx-welcome></app-nx-welcome>`,
+  imports: [CommonModule, PostComponent, MatInputModule, MatFormFieldModule],
+  selector: 'app-todo-list-entry',
+  template: `<app-post></app-post>`,
 })
 export class RemoteEntryComponent {}

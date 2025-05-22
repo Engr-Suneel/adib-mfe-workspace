@@ -4,67 +4,76 @@ import {
   withProps,
   withMethods,
   withHooks,
+  withComputed,
   patchState,
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { inject } from '@angular/core';
-import { tap, catchError, of, switchMap } from 'rxjs';
+import { computed, inject } from '@angular/core';
+import { switchMap } from 'rxjs';
+import { tapResponse } from '@ngrx/operators';
+
+import {
+  withLoadingState,
+  startLoading,
+  stopLoading,
+} from '@adib-mfe-workspace/ui-features';
+
 import { IUserProfile, IUserProfileState } from './user-profile.model';
 import { UserProfileService } from './user-profile.service';
 
 export const UserProfileStore = signalStore(
   { providedIn: 'root' },
 
+  // Initial State
   withState<IUserProfileState>({
     user: null,
-    loading: false,
     error: null,
   }),
 
+  // Shared loading state feature
+  withLoadingState(),
+
+  // Inject service
   withProps(() => ({
     userProfileService: inject(UserProfileService),
   })),
 
+  // Methods
   withMethods(({ userProfileService, ...store }) => ({
     setUser(user: IUserProfile): void {
       patchState(store, { user });
     },
 
-    // ✅ Correct rxMethod signature using Observable input
     loadUser: rxMethod<number>((userId$) =>
       userId$.pipe(
-        tap(() => {
-          patchState(store, { loading: true, error: null });
-        }),
-        switchMap((userId) =>
-          userProfileService.getUserById(userId).pipe(
-            tap({
-              next: (user) => {
-                patchState(store, { user, loading: false });
-              },
-              error: () => {
+        switchMap((userId) => {
+          patchState(store, startLoading());
+
+          return userProfileService.getUserById(userId).pipe(
+            tapResponse({
+              next: (user) => patchState(store, { user }),
+              error: (err) =>
                 patchState(store, {
                   error: 'Failed to load user profile.',
-                  loading: false,
-                });
-              },
-            }),
-            catchError(() => {
-              patchState(store, {
-                error: 'Unknown error',
-                loading: false,
-              });
-              return of();
+                }),
+              finalize: () => patchState(store, stopLoading()),
             })
-          )
-        )
+          );
+        })
       )
     ),
   })),
 
+  // Computed State
+  withComputed((store) => ({
+    hasError: computed(() => !!store.error()),
+    isLoaded: computed(() => !!store.user()),
+  })),
+
+  // Auto-load user on store init
   withHooks({
     onInit({ loadUser }) {
-      loadUser(1); // load default user
+      loadUser(1); // Load default user ID
     },
   })
 );
