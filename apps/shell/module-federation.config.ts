@@ -1,4 +1,30 @@
-import { ModuleFederationConfig } from '@nx/module-federation';
+import { ModuleFederationConfig, SharedFunction } from '@nx/module-federation';
+
+const sharedFunction: SharedFunction = (libraryName, sharedConfig) => {
+  const shareAllSingleton = {
+    singleton: true,
+    strictVersion: true,
+    requiredVersion: 'auto',
+  };
+
+  // List libraries you want to share with custom config
+  const sharedLibs = [
+    '@angular/core',
+    '@angular/common',
+    '@angular/router',
+    '@adib-mfe-workspace/ui-shared',
+  ];
+
+  if (sharedLibs.includes(libraryName)) {
+    return {
+      ...sharedConfig,
+      ...shareAllSingleton,
+    };
+  }
+
+  // For others, no sharing
+  return false;
+};
 
 const config: ModuleFederationConfig = {
   name: 'shell',
@@ -15,6 +41,7 @@ const config: ModuleFederationConfig = {
    *
    */
   remotes: ['userProfile', 'todoList'],
+  shared: sharedFunction,
 };
 
 /**

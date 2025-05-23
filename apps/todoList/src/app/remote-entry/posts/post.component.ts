@@ -12,6 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
+import { BooksStore } from '@adib-mfe-workspace/ui-share';
 import { PostStore } from './post.store';
 import { Post } from './post.model';
 
@@ -40,6 +41,8 @@ export class PostComponent implements AfterViewInit {
   readonly displayedColumns = ['id', 'title', 'body'];
   readonly searchTerm = '';
 
+  books = inject(BooksStore);
+
   pageSize = 5;
   pageIndex = 0;
 
@@ -48,6 +51,8 @@ export class PostComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.postStore.fetchPosts(); // initial fetch
+    console.log('books', this.books.books());
+    console.log('books count', this.books.booksCount());
   }
 
   onSearchChange(value: string) {

@@ -43,7 +43,10 @@
         <!-- Theme toggle -->
         <div class="theme-toggle">
           <mat-icon>light_mode</mat-icon>
-          <mat-slide-toggle (change)="onThemeChange()"></mat-slide-toggle>
+          <mat-slide-toggle
+            [checked]="theme.theme() === 'dark'"
+            (change)="onThemeChange()"
+          ></mat-slide-toggle>
           <mat-icon>dark_mode</mat-icon>
         </div>
 

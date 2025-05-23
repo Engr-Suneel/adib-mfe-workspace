@@ -17,6 +17,7 @@
     "paths": {
       "@adib-mfe-workspace/ui-features": ["libs/ui-features/src/index.ts"],
       "@adib-mfe-workspace/ui-i18n": ["libs/ui-i18n/src/index.ts"],
+      "@adib-mfe-workspace/ui-share": ["libs/ui-share/src/index.ts"],
       "@adib-mfe-workspace/ui-theme": ["libs/ui-theme/src/index.ts"],
       "todoList/Routes": ["apps/todoList/src/app/remote-entry/entry.routes.ts"],
       "userProfile/Routes": [
